@@ -1,3 +1,20 @@
+/*  SM Voice Amount
+ *
+ *  Copyright (C) 2017 Francisco 'Franc1sco' García
+ * 
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) 
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see http://www.gnu.org/licenses/.
+ */
+
 #pragma semicolon 1
 #include <sourcemod>
 #include <sdktools>
@@ -22,7 +39,7 @@ public Plugin:myinfo =
 	author = "Franc1sco steam: franug",
 	description = "Prevents lag when everyone talks at once",
 	version = "v1.4.1",
-	url = "http://servers-cfg.foroactivo.com/"
+	url = "http://steamcommunity.com/id/franug"
 };
 
 public OnPluginStart()
