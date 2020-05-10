@@ -1,6 +1,6 @@
 /*  SM Voice Amount
  *
- *  Copyright (C) 2017 Francisco 'Franc1sco' García
+ *  Copyright (C) 2017-2020 Francisco 'Franc1sco' García
  * 
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -38,7 +38,7 @@ public Plugin myinfo =
 	name = "SM Voice Amount",
 	author = "Franc1sco steam: franug",
 	description = "Prevents lag when everyone talks at once",
-	version = "v1.4.2",
+	version = "v1.5",
 	url = "http://steamcommunity.com/id/franug"
 };
 
@@ -53,7 +53,7 @@ public void OnPluginStart()
 
 	cvar_mute = CreateConVar("sm_voiceamount_mutetime", "1.0", "Time for the temporal mute (1.0 = 1 second)");
 
-	cvar_version = CreateConVar("sm_voiceamount_version", "v1.4.1", _, FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	cvar_version = CreateConVar("sm_voiceamount_version", "v1.5", _, FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
 	// Hooking cvar change
 	cvar_amount.AddChangeHook(OnCVarChange);
@@ -90,16 +90,17 @@ public void OnClientSpeakingEx(int client)
 
 		if(speaking > Max_Amount)
 		{
-			BaseComm_SetClientMute(client, true);
-			CreateTimer(muted, desmute, client);
+			SetClientListeningFlags(client, VOICE_MUTED);
+			CreateTimer(muted, Timer_UnMute, GetClientUserId(client));
 			PrintHintText(client, "%t", "voice blocked");
 		}
 }
 
-public Action desmute(Handle timer, any client)
+public Action Timer_UnMute(Handle timer, int id)
 {
-	if (IsClientInGame(client) && !IsFakeClient(client) &&	BaseComm_IsClientMuted(client))
-		BaseComm_SetClientMute(client, false);
+	int client = GetClientOfUserId(id);
+	if (client && IsClientInGame(client) && !IsFakeClient(client) && !BaseComm_IsClientMuted(client))
+		SetClientListeningFlags(client, VOICE_NORMAL);
 }
 
 // Get new values of cvars if they has being changed
