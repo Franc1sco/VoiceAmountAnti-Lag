@@ -5,5 +5,6 @@
 		"en"		"Your voice was blocked\nPlease wait for the channel to calm down before talking"
         	"es"        	"Tu voz ha sido bloqueada\nPor favor espera a que haya menos gente hablando a la vez"
 		"ru"		"Ваш голос заблокирован\nПодождите пока разгрузится канал, тогда сможете говорить."
+		"tr"        "Sesiniz engellendi \nLütfen konuşmadan önce kanalın sakinleşmesini bekleyin."
 	}
 }
